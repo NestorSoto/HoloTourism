@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/home.dart';
 import 'package:untitled1/login.dart';
 
 
 void main() {
   runApp(MyApp());
 }
+
+const bodyColor = Color(0xFFEEEDDE);
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Login de acceso ',
         theme: ThemeData(
-            primaryColor: Colors.blue
+          scaffoldBackgroundColor: bodyColor,
         ),
         home: login()
     );
