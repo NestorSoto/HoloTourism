@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/home.dart';
 import 'package:untitled1/login.dart';
+import 'package:untitled1/welcome.dart';
 
 
 void main() {
@@ -14,11 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Login de acceso ',
+        title: 'Welcome to HoloTourism ',
         theme: ThemeData(
           scaffoldBackgroundColor: bodyColor,
         ),
-        home: login()
+        home: welcome()
     );
   }
 }
