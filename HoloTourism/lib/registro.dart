@@ -101,7 +101,7 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
                 {
                   if(!_min8(value.toString()))
                   {
-                    return 'Contraceña invalida. Verifique que tenga minimo 8 caracteres.';
+                    return 'Contraseña invalida. Verifique que tenga minimo 8 caracteres.';
                   }
                 }
             ),
@@ -116,7 +116,7 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
                 {
                   if(value.toString() != password.text)
                   {
-                    return 'Las contraceñas no coinciden. Vuelve a intentarlo.';
+                    return 'Las contraseñas no coinciden. Vuelve a intentarlo.';
                   }
                 }
             ),
