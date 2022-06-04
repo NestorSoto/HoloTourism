@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/login.dart';
+import 'package:untitled1/registro.dart';
 
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primaryColor: Colors.blue
         ),
-        home: login()
+        home: RegistroApp()
     );
   }
 }
