@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/login.dart';
+import 'package:untitled1/registro.dart';
 
 class welcome extends StatefulWidget{
   @override
@@ -33,7 +35,12 @@ class _welcomeState extends State<welcome>{
                     'Iniciar Sesión',
                     style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: (){},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => login()),
+                    );
+                  },
                 ),
               ),
               SizedBox(height: 10,),
@@ -52,7 +59,12 @@ class _welcomeState extends State<welcome>{
                     'Registrarse',
                     style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: (){},
+                  onPressed: () {/*
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Registro()),
+                    );
+                  */},
                 ),
               ),
               SizedBox(height: 50,),
