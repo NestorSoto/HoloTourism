@@ -5,15 +5,17 @@ class RegistroApp  extends StatelessWidget
 {
   @override
   Widget build(BuildContext context)
-  {  final titulo ='Registro de Usuario !!';
-  return MaterialApp(
-    home: Scaffold(
-        backgroundColor: Colors.greenAccent,
-        body: Container(
-            margin: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 50),
-            child: MyHomeRegistroApp(),
-    ),
-  );
+  {
+      final titulo ='Registro de Usuario !!';
+      return MaterialApp(
+        home: Scaffold(
+            backgroundColor: Colors.greenAccent,
+            body: Container(
+                margin: EdgeInsets.only(top: 50, left: 50, right: 50, bottom: 50),
+                child: MyHomeRegistroApp(),
+            ),
+        )
+      );
   }
 }
 
@@ -95,7 +97,7 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
                 controller: password,
                 obscureText: true,
                 decoration: InputDecoration(
-                    labelText: 'Contraceña:'
+                    labelText: 'Contraseña:'
                 ),
                 validator: (value)
                 {
@@ -110,7 +112,7 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
                 controller: password_repeat,
                 obscureText: true,
                 decoration: InputDecoration(
-                    labelText: 'Repite la contraceña: '
+                    labelText: 'Repite la contraseña: '
                 ),
                 validator: (value)
                 {
