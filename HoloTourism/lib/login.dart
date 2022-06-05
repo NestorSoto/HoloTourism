@@ -48,26 +48,28 @@ class _loginState extends State<MyHomeLoginApp> {
   Widget build(BuildContext context) {
     return Form(
       key: _formkey,
-        child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset('assets/logohastalqso.png', height: 200), //cambia el nombre de tu imagen
-            CampoText1(),
-            SizedBox(
-              height: 50,
-            ),
-            CampoText2(),
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              decoration: BoxDecoration(
-                  color: Colors.red, borderRadius: BorderRadius.circular(10)),
-              child: Boton(),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Text("¿No tienes una cuenta?"),
-            Text("Regístrese aquí!", style: TextStyle(color: Colors.greenAccent))
-          ]),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Image.asset('assets/logohastalqso.png', height: 200), //cambia el nombre de tu imagen
+              CampoText1(),
+              SizedBox(
+                height: 50,
+              ),
+              CampoText2(),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                    color: Colors.red, borderRadius: BorderRadius.circular(10)),
+                child: Boton(),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Text("¿No tienes una cuenta?"),
+              Text("Regístrese aquí!", style: TextStyle(color: Colors.greenAccent))
+            ]),
+          ),
         ),
       )
     ;

@@ -38,7 +38,7 @@ class _welcomeState extends State<welcome>{
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => login()),
+                      MaterialPageRoute(builder: (context) => LoginApp()),
                     );
                   },
                 ),
@@ -59,12 +59,12 @@ class _welcomeState extends State<welcome>{
                     'Registrarse',
                     style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {/*
+                  onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Registro()),
+                      MaterialPageRoute(builder: (context) => MyHomeRegistroApp()),
                     );
-                  */},
+                  },
                 ),
               ),
               SizedBox(height: 50,),

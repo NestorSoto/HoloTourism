@@ -1,8 +1,9 @@
-import 'dart:js';
+// import 'dart:js';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path/path.dart' as Path;
+import 'package:untitled1/ubicacion.dart';
 class Primera extends StatelessWidget {
   String imagen;
 
@@ -73,7 +74,9 @@ class Primera extends StatelessWidget {
         style: TextStyle(fontSize: 40),
       ),
       onPressed: () {
-        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => Location()
+        ));
       },
     );
   }

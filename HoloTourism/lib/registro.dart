@@ -59,84 +59,88 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-        key: _formkey,
-        child: Column(
-          children:<Widget> [
-            Image.asset('assets/logohastalqso.png', height: 200),
-            TextFormField(
-              controller: nombres,
-              decoration: InputDecoration(hintText: 'Nombres'),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              controller: apellidos,
-              decoration: InputDecoration(hintText: 'Apellidos'),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              controller: numero_celular,
-              decoration: InputDecoration(hintText: 'Número Móvil'),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-                controller: correo,
-                decoration: InputDecoration(
-                    labelText: 'Correo: '
+    return Scaffold(
+      body: Form(
+          key: _formkey,
+          child: SingleChildScrollView(
+            child: Column(
+              children:<Widget> [
+                Image.asset('assets/logohastalqso.png', height: 200),
+                TextFormField(
+                  controller: nombres,
+                  decoration: InputDecoration(hintText: 'Nombres'),
                 ),
-                validator: (value)
-                {
-                  if(!_esEmail(value.toString()))
-                  {
-                    return 'Correo invalido';
-                  }
-                }
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-                controller: password,
-                obscureText: true,
-                decoration: InputDecoration(
-                    labelText: 'Contraseña:'
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: apellidos,
+                  decoration: InputDecoration(hintText: 'Apellidos'),
                 ),
-                validator: (value)
-                {
-                  if(!_min8(value.toString()))
-                  {
-                    return 'Contraseña invalida. Verifique que tenga minimo 8 caracteres.';
-                  }
-                }
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-                controller: password_repeat,
-                obscureText: true,
-                decoration: InputDecoration(
-                    labelText: 'Repite la contraseña: '
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: numero_celular,
+                  decoration: InputDecoration(hintText: 'Número Móvil'),
                 ),
-                validator: (value)
-                {
-                  if(value.toString() != password.text)
-                  {
-                    return 'Las contraseñas no coinciden. Vuelve a intentarlo.';
-                  }
-                }
+                SizedBox(height: 20),
+                TextFormField(
+                    controller: correo,
+                    decoration: InputDecoration(
+                        labelText: 'Correo: '
+                    ),
+                    validator: (value)
+                    {
+                      if(!_esEmail(value.toString()))
+                      {
+                        return 'Correo invalido';
+                      }
+                    }
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                    controller: password,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'Contraseña:'
+                    ),
+                    validator: (value)
+                    {
+                      if(!_min8(value.toString()))
+                      {
+                        return 'Contraseña invalida. Verifique que tenga minimo 8 caracteres.';
+                      }
+                    }
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                    controller: password_repeat,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'Repite la contraseña: '
+                    ),
+                    validator: (value)
+                    {
+                      if(value.toString() != password.text)
+                      {
+                        return 'Las contraseñas no coinciden. Vuelve a intentarlo.';
+                      }
+                    }
+                ),
+                SizedBox(height: 20),
+                MaterialButton(
+                  minWidth: 800.0,
+                  height: 80.0,
+                  onPressed: () {
+                    if(_formkey.currentState!.validate())
+                    {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginApp()));
+                    }
+                  },
+                  color: Colors.green,
+                  child: Text('Registrarse', style: TextStyle(color: Colors.white)),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            MaterialButton(
-              minWidth: 800.0,
-              height: 80.0,
-              onPressed: () {
-                if(_formkey.currentState!.validate())
-                {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => login()));
-                }
-              },
-              color: Colors.green,
-              child: Text('Registrarse', style: TextStyle(color: Colors.white)),
-            ),
-          ],
-        )
+          )
+      ),
     );
   }
 }

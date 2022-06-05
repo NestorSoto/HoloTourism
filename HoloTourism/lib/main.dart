@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           scaffoldBackgroundColor: bodyColor,
         ),
-        home: MyHomePage(title: 'a',)
+        home: MyHomePage(title: 'a')
     );
   }
 }
