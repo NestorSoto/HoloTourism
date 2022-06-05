@@ -1,9 +1,8 @@
+import 'dart:js';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
-
-
+import 'package:path/path.dart' as Path;
 class Primera extends StatelessWidget {
   String imagen;
 
@@ -27,8 +26,10 @@ class Primera extends StatelessWidget {
             ],
             color: Color(0xFFEEEDDE),
           ),
+
           //margin: EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 50),
           child: Center(
+
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +55,8 @@ class Primera extends StatelessWidget {
                       ],
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(1)),
-                  child: Boton(),
+                  child: Boton(context),
+
                 )
               ],
             ),
@@ -64,13 +66,32 @@ class Primera extends StatelessWidget {
     );
   }
 
-  Widget Boton() {
+  Widget Boton(context) {
     return FlatButton(
       child: Text(
         'Ir a ubicación',
         style: TextStyle(fontSize: 40),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context);
+      },
     );
   }
+
+/*
+  Widget BotonRetornar(){
+    return Scaffold(
+      body: Center(
+        child: RaisedButton(
+          onPressed: (){
+            //Navigator.pop(context);
+
+          },
+          child: Text("retornar"),
+        ),
+      ),
+    )
+  }
+  */
+
 }
