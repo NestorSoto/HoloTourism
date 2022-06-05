@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+
+
 class Primera extends StatelessWidget {
-  const Primera({Key? key}) : super(key: key);
+  String imagen;
+
+
+  Primera({super.key, required this.imagen});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,11 +33,11 @@ class Primera extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Machu Picchu",
+                Text("$imagen",
                     style:
                     TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                Image.network(
-                  'https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Before_Machu_Picchu.jpg/800px-Before_Machu_Picchu.jpg',
+                Image.asset(
+                  'assets/tourism/$imagen.jpg',
                   width: 450.0,
                 ),
                 Text(

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:untitled1/resultado.dart';
 
 const topColor = Color(0xFF00ac83);
 class MyHomePage extends StatefulWidget {
@@ -15,7 +16,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   late final List<bool> _selections;
-
+  final touristicPlaces = ['chanchan','machu_picchu','mono'];
   @override
   void initState() {
     _selections = [false, true];
@@ -75,14 +76,21 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: touristicPlaces.length,
         itemBuilder: (context, index){
           final item = touristicPlaces[index];
-          return GridTile(
-              footer: Container(
-                alignment: Alignment.center,
-                color: const Color(0xFFEEEDDE),
-                child: Text(item),
-                padding: const EdgeInsets.symmetric(vertical: 2),
-              ),
-              child: Image.asset('assets/tourism/$item.jpg', fit: BoxFit.cover)
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(context,MaterialPageRoute(
+                  builder: (context)=> Primera(imagen: touristicPlaces[index]))
+              );
+            },
+            child: GridTile(
+                footer: Container(
+                  alignment: Alignment.center,
+                  color: const Color(0xFFEEEDDE),
+                  padding: const EdgeInsets.symmetric(vertical: 2),
+                  child: Text(item),
+                ),
+                child: Image.asset('assets/tourism/$item.jpg', fit: BoxFit.cover)
+            ),
           );
         }
     ),
@@ -107,11 +115,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 70,
                 fit: BoxFit.cover,
               ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => Primera(imagen: touristicPlaces[index])
+                ));
+              },
               title: Text(item),
-
             ),
           );}
     ),
   );
 }
-final touristicPlaces = ['chanchan','machu_picchu','mono'];
