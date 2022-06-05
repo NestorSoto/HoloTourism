@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled1/home.dart';
 import 'package:untitled1/login.dart';
 import 'package:untitled1/welcome.dart';
+import 'package:untitled1/ubicacion.dart';
 
 
 void main() {
