@@ -59,12 +59,12 @@ class _welcomeState extends State<welcome>{
                     'Registrarse',
                     style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {/*
+                  onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Registro()),
+                      MaterialPageRoute(builder: (context) => RegistroApp()),
                     );
-                  */},
+                  },
                 ),
               ),
               SizedBox(height: 50,),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/registro.dart';
 
 class login extends StatefulWidget {
   @override
