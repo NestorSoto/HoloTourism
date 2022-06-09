@@ -129,7 +129,7 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
               onPressed: () {
                 if(_formkey.currentState!.validate())
                 {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => login()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginApp()));
                 }
               },
               color: Colors.green,
