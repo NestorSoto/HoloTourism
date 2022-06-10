@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/registro.dart';
+import 'package:untitled1/homeimprovisado.dart';
 
 
 class LoginApp extends StatelessWidget {
@@ -121,6 +122,12 @@ class _loginState extends State<MyHomeLoginApp> {
         {
           Scaffold.of(context).showSnackBar(
               SnackBar(content: Text("procesando datos...!!")));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyApp()),
+          );
+        }else{
+
         }
       },
     );
