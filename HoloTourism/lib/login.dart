@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/registro.dart';
-import 'package:untitled1/homeimprovisado.dart';
 
+import 'package:untitled1/home.dart';
 
 class LoginApp extends StatelessWidget {
   @override
@@ -126,7 +126,7 @@ class _loginState extends State<MyHomeLoginApp> {
               SnackBar(content: Text("procesando datos...!!")));
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MyApp()),
+            MaterialPageRoute(builder: (context) => const MyHomePage(title: "HOLO TOURISM")),
           );
         }else{
 
