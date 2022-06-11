@@ -116,7 +116,7 @@ class _loginState extends State<MyHomeLoginApp> {
     return TextButton(
       child: Text(
         'Iniciar Sesión',
-        style: TextStyle(color: Colors.white, fontSize: 20),
+        style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
       ),
       onPressed: ()
       {

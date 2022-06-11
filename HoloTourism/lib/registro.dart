@@ -123,17 +123,25 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
                 }
             ),
             SizedBox(height: 20),
-            MaterialButton(
-              minWidth: 800.0,
-              height: 80.0,
+            RaisedButton(
+              color: Color.fromRGBO(255, 255, 255, 1),
+              padding: EdgeInsets.only(top: 25, bottom: 25, left: 50, right: 50),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.black, width: 3),
+              ),
+              child: Text(
+                'Registrarse',
+                style: TextStyle(
+                    color: Colors.pinkAccent,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
               onPressed: () {
-                if(_formkey.currentState!.validate())
-                {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginApp()));
-                }
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginApp()),
+                );
               },
-              color: Colors.green,
-              child: Text('Registrarse', style: TextStyle(color: Colors.white)),
             ),
           ],
         )
