@@ -91,7 +91,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          HomeScreenDialogs().optionsDialogBox(context);
         },
         tooltip: 'Upload Image',
         child: const Icon(Icons.add),

@@ -3,43 +3,40 @@ import 'dart:io';
 import 'package:untitled1/screens/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:untitled1/home.dart';
 import 'image_view_screen.dart';
 
-class HomeScreenDialogs {
-  List<PickedFile> images = [];
+class HomeScreenDialogs extends StatefulWidget {
+  File? images2;
   final imagePicker = ImagePicker();
-  Future<void> optionsDialogBox(BuildContext context) {
+  HomeScreenDialogs({Key? key}) : super(key: key);
+
+  Future build(BuildContext context, {required Function(dynamic varImage) callbackFunction}) {
     return showDialog(
         context: context,
+
         builder: (BuildContext context) {
           return AlertDialog(
+            title: const Text('Subir imagen'),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: _openCamera,
-                    child: const Text('image_picker: Cámara'),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                  ),
-                  GestureDetector(
-                    onTap: _openGallery,
-                    child: const Text('image_picker: Galería'),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                  ),
-                  GestureDetector(
-                    child: const Text('camera: cámara'),
                     onTap: () async {
-                      String picturePath = await Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => const CameraScreen()),
-                      );
-                      images.add(PickedFile(picturePath));
+                      await _openCamera();
+                      callbackFunction(images2);
                     },
+                    child: const Text('Cámara'),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      await _openGallery();
+                      callbackFunction(images2);
+                    },
+                    child: const Text('Galería'),
                   ),
                 ],
               ),
@@ -48,17 +45,25 @@ class HomeScreenDialogs {
         });
   }
 
-  void _openCamera() async {
-    PickedFile? picture = (await imagePicker.pickImage(
+  Future<void> _openCamera() async {
+    XFile picture = (await imagePicker.pickImage(
       source: ImageSource.camera,
-    )) as PickedFile?;
-    images.add(picture!);
+    )) as XFile;
+    if (picture == null) return;
+    images2 = File(picture.path);
   }
 
-  void _openGallery() async {
-    PickedFile picture = (await imagePicker.pickImage(
+  Future<void> _openGallery() async {
+    XFile picture = (await imagePicker.pickImage(
       source: ImageSource.gallery,
-    )) as PickedFile;
-    images.add(picture);
+    )) as XFile;
+    if (picture == null) return;
+    images2 = File(picture.path);
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }

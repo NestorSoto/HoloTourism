@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled1/resultado.dart';
 
@@ -6,7 +8,7 @@ class CustomList extends StatelessWidget {
   const CustomList({Key? key, required this.selections, required this.touristicPlaces}) : super(key: key);
 
   final List<bool> selections;
-  final List<String> touristicPlaces;
+  final List<File> touristicPlaces;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +33,9 @@ class CustomList extends StatelessWidget {
                     alignment: Alignment.center,
                     color: const Color(0xFFEEEDDE),
                     padding: const EdgeInsets.symmetric(vertical: 2),
-                    child: Text(item),
+                    child: Text('A'),
                   ),
-                  child: Image.asset('assets/tourism/$item.jpg', fit: BoxFit.cover)
+                  child: Image.file(item, fit: BoxFit.cover)
               ),
             );
           }
@@ -53,8 +55,8 @@ class CustomList extends StatelessWidget {
                   )
               ),
               child: ListTile (
-                leading: Image.asset(
-                  'assets/tourism/$item.jpg',
+                leading: Image.file(
+                  item,
                   height: 50,
                   width: 70,
                   fit: BoxFit.cover,
@@ -64,7 +66,7 @@ class CustomList extends StatelessWidget {
                       builder: (context) => Primera(imagen: touristicPlaces[index])
                   ));
                 },
-                title: Text(item),
+                title: Text('A'),
               ),
             );}
       ),

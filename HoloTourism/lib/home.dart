@@ -1,14 +1,14 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:untitled1/resultado.dart';
 import './custom_widgets/customlist.dart';
+import 'package:untitled1/screens/home_screen.dart';
 
 const topColor = Color(0xFF00ac83);
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  List<File> touristicPlaces = <File>[];
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -16,19 +16,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int _counter = 0;
   late final List<bool> _selections;
-  final touristicPlaces = ['chanchan','machu_picchu','mono'];
+  callback(varImage){
+    setState((){
+      widget.touristicPlaces.add(varImage);
+    });
+  }
   @override
   void initState() {
     _selections = [false, true];
     super.initState();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
   }
 
   @override
@@ -60,14 +57,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: CustomList(
         selections: _selections,
-        touristicPlaces: touristicPlaces,
+        touristicPlaces: widget.touristicPlaces,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Añadir imagen',
+        onPressed: () async{
+          HomeScreenDialogs().build(context, callbackFunction:callback);
+        },
         backgroundColor: topColor,
+        tooltip: 'Upload Image',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),  // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

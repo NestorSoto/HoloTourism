@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path/path.dart' as Path;
 import 'package:untitled1/ubicacion.dart';
+import 'dart:io';
+
 class Primera extends StatelessWidget {
-  String imagen;
+  File imagen;
 
 
   Primera({super.key, required this.imagen});
@@ -35,11 +37,11 @@ class Primera extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("$imagen",
+                Text("A",
                     style:
                     TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                Image.asset(
-                  'assets/tourism/$imagen.jpg',
+                Image.file(
+                  imagen,
                   width: 450.0,
                 ),
                 Text(
