@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled1/registro.dart';
 
-import 'package:untitled1/home.dart';
 
 class LoginApp extends StatelessWidget {
   @override
@@ -50,28 +48,26 @@ class _loginState extends State<MyHomeLoginApp> {
   Widget build(BuildContext context) {
     return Form(
       key: _formkey,
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Image.asset('assets/logohastalqso.png', height: 200), //cambia el nombre de tu imagen
-              CampoText1(),
-              SizedBox(
-                height: 50,
-              ),
-              CampoText2(),
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                    color: Colors.red, borderRadius: BorderRadius.circular(10)),
-                child: Boton(),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Text("¿No tienes una cuenta?"),
-              Text("Regístrese aquí!", style: TextStyle(color: Colors.greenAccent))
-            ]),
-          ),
+        child: Center(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Image.asset('assets/logohastalqso.png', height: 200), //cambia el nombre de tu imagen
+            CampoText1(),
+            SizedBox(
+              height: 50,
+            ),
+            CampoText2(),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              decoration: BoxDecoration(
+                  color: Colors.red, borderRadius: BorderRadius.circular(10)),
+              child: Boton(),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Text("¿No tienes una cuenta?"),
+            Text("Regístrese aquí!", style: TextStyle(color: Colors.greenAccent))
+          ]),
         ),
       )
     ;
@@ -124,12 +120,6 @@ class _loginState extends State<MyHomeLoginApp> {
         {
           Scaffold.of(context).showSnackBar(
               SnackBar(content: Text("procesando datos...!!")));
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MyHomePage(title: "HOLO TOURISM")),
-          );
-        }else{
-
         }
       },
     );

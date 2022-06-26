@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/login.dart';
-import 'package:untitled1/registro.dart';
+import 'package:untitled1/pages/login_page.dart';
 
 class welcome extends StatefulWidget {
   @override
@@ -46,10 +46,7 @@ class _welcomeState extends State<welcome> {
                         fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginApp()),
-                    );
+                    Navigator.pushNamed(context, "login");
                   },
                 ),
               ),
@@ -77,11 +74,8 @@ class _welcomeState extends State<welcome> {
                         fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegistroApp()),
-                    );
-                  },
+                    Navigator.pushNamed(context, "register");
+                    },
                 ),
               ),
               SizedBox(
