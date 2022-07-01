@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/login.dart';
+import 'httpResponses/Registro.dart';
 
 class RegistroApp  extends StatelessWidget
 {
@@ -29,6 +30,7 @@ class MyHomeRegistroApp  extends StatefulWidget
 class _MyHomePageState extends State< MyHomeRegistroApp>
 {
 
+  final registro = Registro();
   final _formkey = GlobalKey<FormState>();
   final _correo = GlobalKey<FormState>();
 
@@ -137,6 +139,7 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
                     fontWeight: FontWeight.bold),
               ),
               onPressed: () {
+                registro.registrar(nombres.text, apellidos.text, numero_celular.text, correo.text, password.text);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LoginApp()),
@@ -148,3 +151,5 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
     );
   }
 }
+
+
