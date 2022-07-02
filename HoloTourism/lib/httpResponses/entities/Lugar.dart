@@ -1,8 +1,8 @@
 
-import 'dart:ffi';
+
 
 class Lugar{
-  final Bool ok;
+  final bool ok;
   final String nombre;
   final String latitud;
   final String longitud;
@@ -18,8 +18,8 @@ class Lugar{
     return Lugar(
       ok: json['ok'],
       nombre: json['nombre'],
-      latitud: json['latitud'],
-      longitud: json['longitud'],
+      latitud: json['latitud'].toString(),
+      longitud: json['longitud'].toString(),
     );
   }
 

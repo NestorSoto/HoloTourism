@@ -1,13 +1,16 @@
+
 import 'package:flutter/material.dart';
 
 const topColor = Color(0xFF00ac83);
 class Location extends StatefulWidget{
+
   @override
   _LocationState createState() => _LocationState();
 }
 
 class _LocationState extends State<Location>{
   int _counter = 0;
+
   late final List<bool> _selections;
 
   @override

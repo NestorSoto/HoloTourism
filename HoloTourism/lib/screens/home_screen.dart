@@ -57,7 +57,8 @@ class HomeScreenDialogs extends StatefulWidget {
     )) as XFile;
     if (picture == null) return;
     if(await imagen.subir(picture.path.split("/").last, picture.path)=='ok'){
-      futureLugar = await imagen.detectar(picture.path);
+      debugPrint('funciono mi king');
+      futureLugar = await imagen.detectar(picture.path.split("/").last);
       fileName = futureLugar.nombre;
     } else {
       debugPrint('no funciono mi king');
@@ -71,8 +72,9 @@ class HomeScreenDialogs extends StatefulWidget {
     )) as XFile;
     if (picture == null) return;
     if(await imagen.subir(picture.path.split("/").last, picture.path)=='ok'){
-      futureLugar = await imagen.detectar(picture.path);
+      futureLugar = await imagen.detectar(picture.path.split("/").last);
       fileName = futureLugar.nombre;
+      debugPrint('funciono mi king');
     } else{
       debugPrint('no funciono mi king');
     }

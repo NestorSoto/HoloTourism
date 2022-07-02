@@ -8,9 +8,9 @@ import 'dart:io';
 
 class Primera extends StatelessWidget {
   File imagen;
+  String title;
 
-
-  Primera({super.key, required this.imagen});
+  Primera({super.key, required this.imagen, required this.title});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +37,7 @@ class Primera extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("A",
+                Text(title,
                     style:
                     TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 Image.file(

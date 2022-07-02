@@ -25,7 +25,7 @@ class CustomList extends StatelessWidget {
             return GestureDetector(
               onTap: (){
                 Navigator.push(context,MaterialPageRoute(
-                    builder: (context)=> Primera(imagen: touristicPlaces[index]))
+                    builder: (context)=> Primera(imagen: touristicPlaces[index], title: textNames[index]))
                 );
               },
               child: GridTile(
@@ -63,7 +63,7 @@ class CustomList extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => Primera(imagen: touristicPlaces[index])
+                      builder: (context) => Primera(imagen: touristicPlaces[index], title: textNames[index])
                   ));
                 },
                 title: Text(textNames[index]),
