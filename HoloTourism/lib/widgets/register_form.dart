@@ -1,3 +1,5 @@
+import 'package:untitled1/httpResponses/Registro.dart';
+import 'package:untitled1/pages/login_page.dart';
 import 'package:untitled1/utils/responsive.dart';
 import 'package:flutter/material.dart';
 import 'input_text.dart';
@@ -9,7 +11,7 @@ class RegisterForm extends StatefulWidget{
 
 class _RegisterFormState extends State<RegisterForm>{
   GlobalKey<FormState> _formkey = GlobalKey();
-  String _email = "", _password = "", _username = "";
+  String _email = "", _password = "", _password2 = "", _nombre = "", _phone = "", _apellido = "";
 
   _submit(){
     final isOk = _formkey.currentState?.validate();
@@ -21,6 +23,7 @@ class _RegisterFormState extends State<RegisterForm>{
   Widget build (BuildContext context){
 
     final Responsive responsive = Responsive.of(context);
+    final registro = Registro();
 
     return Positioned(
       bottom: 30,
@@ -35,14 +38,29 @@ class _RegisterFormState extends State<RegisterForm>{
 
               InputText(
                 keyboardType: TextInputType.emailAddress,
-                label: "Nombre de usuario",
+                label: "Nombre",
                 fondSize: responsive.dp(responsive.isTablet?1.3 : 1.5),
                 onChanged: (text){
-                  _username = text;
+                  _nombre = text;
                 },
                 validator: (text){
-                  if(text != null && text.trim().length<5){
-                    return "Nombre de usurio inválido";
+                  if(text != null && text.trim().length<2){
+                    return "Nombre invalido.";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: responsive.dp(1.2),),
+              InputText(
+                keyboardType: TextInputType.emailAddress,
+                label: "Apellido",
+                fondSize: responsive.dp(responsive.isTablet?1.3 : 1.5),
+                onChanged: (text){
+                  _apellido = text;
+                },
+                validator: (text){
+                  if(text != null && text.trim().length<2){
+                    return "Apellido invalido.";
                   }
                   return null;
                 },
@@ -65,7 +83,23 @@ class _RegisterFormState extends State<RegisterForm>{
               SizedBox(height: responsive.dp(1.2),),
               InputText(
                 keyboardType: TextInputType.emailAddress,
+                label: "Teléfono Móvil",
+                fondSize: responsive.dp(responsive.isTablet?1.3 : 1.5),
+                onChanged: (text){
+                  _phone = text;
+                },
+                validator: (text){
+                  if(text != null && text.trim().length<9){
+                    return "Teléfono Móvil incorrecto";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: responsive.dp(1.2),),
+              InputText(
+                keyboardType: TextInputType.emailAddress,
                 label: "Contraseña",
+                obscureText: true,
                 fondSize: responsive.dp(responsive.isTablet?1.3 : 1.5),
                 onChanged: (text){
                   _password = text;
@@ -73,6 +107,22 @@ class _RegisterFormState extends State<RegisterForm>{
                 validator: (text){
                   if(text != null && text.trim().length<6){
                     return "Contraseña inválida";
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: responsive.dp(1.2),),
+              InputText(
+                keyboardType: TextInputType.emailAddress,
+                obscureText: true,
+                label: "Repita la contraceña",
+                fondSize: responsive.dp(responsive.isTablet?1.3 : 1.5),
+                onChanged: (text){
+                  _password2 = text;
+                },
+                validator: (text){
+                  if(text != _password){
+                    return "Las contraseña no coinciden";
                   }
                   return null;
                 },
@@ -89,7 +139,13 @@ class _RegisterFormState extends State<RegisterForm>{
                         fontSize: responsive.dp(1.5),
                       ),
                     ),
-                    onPressed: this._submit,
+                    onPressed: () {
+                      registro.registrar(_nombre, _apellido, _phone, _email, _password);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       backgroundColor: Colors.pinkAccent,
@@ -114,7 +170,10 @@ class _RegisterFormState extends State<RegisterForm>{
                       textStyle: TextStyle(fontSize: responsive.dp(1.55),),
                     ),
                     onPressed: (){
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
                     },
                   ),
                 ],

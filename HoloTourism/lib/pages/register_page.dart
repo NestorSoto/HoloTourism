@@ -45,7 +45,7 @@ class _RegisterPageState extends State <RegisterPage>{
                   ),
                 ),
                 Positioned(
-                  top: -(orangeSize)*0.35,
+                  top: -(orangeSize)*0.45,
                   left: -(orangeSize)*0.15,
                   child:Circle (
                     size: orangeSize,
@@ -57,7 +57,7 @@ class _RegisterPageState extends State <RegisterPage>{
                 ),
 
                 Positioned(
-                  top: pinkSize * 0.22,
+                  top: pinkSize * 0.05,
                   child: Column(
                     children:<Widget>[
                       Text(
