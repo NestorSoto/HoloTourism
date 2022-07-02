@@ -49,6 +49,7 @@ class HomeScreenDialogs extends StatefulWidget {
     XFile picture = (await imagePicker.pickImage(
       source: ImageSource.camera,
     )) as XFile;
+
     if (picture == null) return;
     images2 = File(picture.path);
   }

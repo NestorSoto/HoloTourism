@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:untitled1/resultado.dart';
 import './custom_widgets/customlist.dart';
 import 'package:untitled1/screens/home_screen.dart';
@@ -23,7 +24,6 @@ class _MyHomePageState extends State<MyHomePage> {
       widget.touristicPlaces.add(varImage);
     });
   }
-  final touristicPlaces = ['chanchan', 'machu_picchu', 'mono'];
   @override
   void initState() {
     _selections = [false, true];
@@ -42,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (BuildContext context) => super.widget));
             }),
-        title: Text(widget.title),
         actions: <Widget>[
           ToggleButtons(
             isSelected: _selections,
@@ -64,7 +63,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         backgroundColor: topColor,
       ),
-      body: CustomList(
+      body: widget.touristicPlaces.isEmpty ?
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            SizedBox(height: 60),
+            Text.rich(TextSpan(
+                text: "¿Aún no sube ninguna imagen?",
+                style: TextStyle(fontWeight: FontWeight.bold))),
+            Text.rich(TextSpan(
+                text: "¡Haga click en el signo '+' para iniciar!",
+                style: TextStyle(fontWeight: FontWeight.bold)))
+          ],
+        ),
+      ) : CustomList(
         selections: _selections,
         touristicPlaces: widget.touristicPlaces,
       ),

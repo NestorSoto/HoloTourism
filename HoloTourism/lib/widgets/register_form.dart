@@ -1,6 +1,8 @@
 import 'package:untitled1/utils/responsive.dart';
 import 'package:flutter/material.dart';
+import '../httpResponses/Registro.dart';
 import 'input_text.dart';
+import 'login_form.dart';
 
 class RegisterForm extends StatefulWidget{
   @override
@@ -8,9 +10,10 @@ class RegisterForm extends StatefulWidget{
 }
 
 class _RegisterFormState extends State<RegisterForm>{
+  final registro = Registro();
   GlobalKey<FormState> _formkey = GlobalKey();
   String _email = "", _password = "", _username = "";
-
+  String _alertaText = '';
   _submit(){
     final isOk = _formkey.currentState?.validate();
     print("form isOk $isOk");
@@ -19,7 +22,6 @@ class _RegisterFormState extends State<RegisterForm>{
 
   @override
   Widget build (BuildContext context){
-
     final Responsive responsive = Responsive.of(context);
 
     return Positioned(
@@ -71,7 +73,7 @@ class _RegisterFormState extends State<RegisterForm>{
                   _password = text;
                 },
                 validator: (text){
-                  if(text != null && text.trim().length<6){
+                  if(text != null && text.trim().length<8){
                     return "Contraseña inválida";
                   }
                   return null;
@@ -83,13 +85,27 @@ class _RegisterFormState extends State<RegisterForm>{
                   width: double.infinity,
                   child: TextButton(
                     child: Text(
-                      "Resgistrarse",
+                      "Registrarse",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: responsive.dp(1.5),
                       ),
                     ),
-                    onPressed: this._submit,
+                    onPressed: () async {
+                      if (_formkey.currentState!.validate()) {
+                        if (await registro.registrar(
+                            _username, 'Hakurei', '1', _email, _password) == 'ok') {
+                          Navigator.pop(context);
+                        } else {
+                          setState((){
+                            _alertaText = 'Ocurrio un error al conectarse al servicio';
+                          });
+                        }
+                      } else {
+
+                      }
+                      registro.registrar(_username, '', '', _email, _password);
+                  },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       backgroundColor: Colors.pinkAccent,
@@ -98,6 +114,10 @@ class _RegisterFormState extends State<RegisterForm>{
                   )
               ),
               SizedBox(height: responsive.dp(2),),
+              Text(
+                _alertaText,
+                style: TextStyle(color: Colors.redAccent),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

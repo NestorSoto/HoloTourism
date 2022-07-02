@@ -1,7 +1,9 @@
+import 'package:http/http.dart';
 import 'package:untitled1/utils/responsive.dart';
 import 'package:flutter/material.dart';
 import 'input_text.dart';
 import 'package:untitled1/home.dart';
+import '/httpResponses/Registro.dart';
 
 class LoginForm extends StatefulWidget{
   @override
@@ -9,11 +11,12 @@ class LoginForm extends StatefulWidget{
 }
 
 class _LoginFormState extends State<LoginForm>{
+  final registro = Registro();
   GlobalKey<FormState> _formkey = GlobalKey();
   String _email = "", _password = "";
 
   static final RegExp _emailRegExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9\-\_]+(\.[a-zA-Z]+)*$");
-
+  String _alertaText = '';
   bool _esEmail(String str)
   {
     return _emailRegExp.hasMatch(str.toLowerCase());
@@ -77,6 +80,7 @@ class _LoginFormState extends State<LoginForm>{
                         },
                       ),
                     ),
+
                     TextButton(
                       style: TextButton.styleFrom(
                         primary: Colors.black,
@@ -90,7 +94,7 @@ class _LoginFormState extends State<LoginForm>{
                         ),
                       ),
                       onPressed: (){},
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -100,6 +104,10 @@ class _LoginFormState extends State<LoginForm>{
                 child: BotonIngresar(responsive),
               ),
               SizedBox(height: responsive.dp(2),),
+              Text(
+                _alertaText,
+                style: TextStyle(color: Colors.redAccent),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -110,7 +118,7 @@ class _LoginFormState extends State<LoginForm>{
                     ),
                   ),
                   TextButton(
-                    child: Text("Resgístrate",),
+                    child: Text("Regístrate",),
                     style: TextButton.styleFrom(
                       primary: Colors.pinkAccent,
                     textStyle: TextStyle(fontSize: responsive.dp(1.55),),
@@ -143,15 +151,21 @@ class _LoginFormState extends State<LoginForm>{
         backgroundColor: Colors.pinkAccent,
         primary: Colors.black,
       ),
-      onPressed: ()
+      onPressed: () async
       {
         if (_formkey.currentState!.validate())
         {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const MyHomePage(title: "HOLO TOURISM")),
-          );
-        }else{
+          if (await registro.ingresar(_email, _password) == 'ok') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyHomePage()),
+            );
+          } else {
+            setState((){
+              _alertaText = 'Usuario o contraseña incorrecto';
+            });
+          }
+        } else {
 
         }
       },

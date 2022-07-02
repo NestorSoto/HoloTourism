@@ -18,21 +18,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Welcome to HoloTourism ',
-        theme: ThemeData(
-          scaffoldBackgroundColor: bodyColor,
-        ),
-        home: MyHomePage()
-=======
-      SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
 
-      return MaterialApp(
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Welcome to HoloTourism ',
       theme: ThemeData(primaryColor: Colors.blue),
@@ -41,7 +33,6 @@ class MyApp extends StatelessWidget {
         RegisterPage.routeName: (_) => RegisterPage(),
         LoginPage.routeName:(_) => LoginPage(),
       },
->>>>>>> main
     );
   }
 }

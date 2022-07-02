@@ -11,8 +11,8 @@ import 'package:http/http.dart' as http;
 
 class Registro {
 
-  Future<http.Response> registrar(String nombres, String apellidos, String numero_celular, String correo, String password) {
-    return http.post(
+  Future<String> registrar(String nombres, String apellidos, String numero_celular, String correo, String password) async {
+    var response = await http.post(
       Uri.parse('https://holotourism.herokuapp.com/api/auth/new'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -25,6 +25,29 @@ class Registro {
         'password': password
       }),
     );
+    if (response.statusCode == 201){
+      return 'ok';
+    } else {
+      return 'a';
+    }
+  }
+
+  Future<String> ingresar(String email, String password) async {
+    var response = await http.post(
+      Uri.parse('https://holotourism.herokuapp.com/api/auth/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': email,
+        'password': password
+      }),
+    );
+    if (response.statusCode == 200){
+      return 'ok';
+    } else {
+      return 'a';
+    }
   }
 
 }
