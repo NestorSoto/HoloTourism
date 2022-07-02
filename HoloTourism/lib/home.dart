@@ -6,6 +6,7 @@ import './custom_widgets/customlist.dart';
 import 'package:untitled1/screens/home_screen.dart';
 
 const topColor = Color(0xFF00ac83);
+
 class MyHomePage extends StatefulWidget {
   List<File> touristicPlaces = <File>[];
   MyHomePage({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
       widget.touristicPlaces.add(varImage);
     });
   }
+  final touristicPlaces = ['chanchan', 'machu_picchu', 'mono'];
   @override
   void initState() {
     _selections = [false, true];
@@ -30,10 +32,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset('assets/logohastalqso.png',fit: BoxFit.cover, height: 60,width: 70),
+        leading: IconButton(
+            icon: Image.asset("assets/logohastalqso.png", fit: BoxFit.cover, height: 60, width: 70),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => super.widget));
+            }),
+        title: Text(widget.title),
         actions: <Widget>[
           ToggleButtons(
             isSelected: _selections,

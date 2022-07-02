@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/login.dart';
-import 'package:untitled1/registro.dart';
+import 'package:untitled1/pages/login_page.dart';
 
-class welcome extends StatefulWidget{
+class welcome extends StatefulWidget {
   @override
   _welcomeState createState() => _welcomeState();
 }
 
-class _welcomeState extends State<welcome>{
+class _welcomeState extends State<welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,12 +18,19 @@ class _welcomeState extends State<welcome>{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/logohastalqso.png", height: 200,),
-              const SizedBox(height: 75,),
+              Image.asset(
+                "assets/logohastalqso.png",
+                height: 200,
+              ),
+              const SizedBox(
+                height: 75,
+              ),
               Container(
-                margin: EdgeInsets.only(top: 20,),
+                margin: EdgeInsets.only(
+                  top: 20,
+                ),
                 decoration: BoxDecoration(
-                  boxShadow: [ shadowButton() ],
+                  boxShadow: [shadowButton()],
                 ),
                 child: RaisedButton(
                   color: Color.fromRGBO(255, 255, 255, 1),
@@ -33,21 +40,25 @@ class _welcomeState extends State<welcome>{
                   ),
                   child: Text(
                     'Iniciar Sesión',
-                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginApp()),
-                    );
+                    Navigator.pushNamed(context, "login");
                   },
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
-                margin: EdgeInsets.only(top: 20,),
+                margin: EdgeInsets.only(
+                  top: 20,
+                ),
                 decoration: BoxDecoration(
-                  boxShadow: [ shadowButton() ],
+                  boxShadow: [shadowButton()],
                 ),
                 child: RaisedButton(
                   color: Color.fromRGBO(15, 242, 187, 1),
@@ -57,27 +68,28 @@ class _welcomeState extends State<welcome>{
                   ),
                   child: Text(
                     'Registrarse',
-                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MyHomeRegistroApp()),
-                    );
-                  },
+                    Navigator.pushNamed(context, "register");
+                    },
                 ),
               ),
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
             ],
           ),
         ),
-
       ),
     );
   }
 }
 
-BoxShadow shadowButton(){
+BoxShadow shadowButton() {
   return const BoxShadow(
     color: Colors.black,
     spreadRadius: 1,

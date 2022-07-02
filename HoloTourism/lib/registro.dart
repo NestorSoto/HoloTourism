@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/login.dart';
+import 'httpResponses/Registro.dart';
 
 class RegistroApp  extends StatelessWidget
 {
@@ -29,6 +30,7 @@ class MyHomeRegistroApp  extends StatefulWidget
 class _MyHomePageState extends State< MyHomeRegistroApp>
 {
 
+  final registro = Registro();
   final _formkey = GlobalKey<FormState>();
   final _correo = GlobalKey<FormState>();
 
@@ -59,88 +61,95 @@ class _MyHomePageState extends State< MyHomeRegistroApp>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-          key: _formkey,
-          child: SingleChildScrollView(
-            child: Column(
-              children:<Widget> [
-                Image.asset('assets/logohastalqso.png', height: 200),
-                TextFormField(
-                  controller: nombres,
-                  decoration: InputDecoration(hintText: 'Nombres'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: apellidos,
-                  decoration: InputDecoration(hintText: 'Apellidos'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: numero_celular,
-                  decoration: InputDecoration(hintText: 'Número Móvil'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                    controller: correo,
-                    decoration: InputDecoration(
-                        labelText: 'Correo: '
-                    ),
-                    validator: (value)
-                    {
-                      if(!_esEmail(value.toString()))
-                      {
-                        return 'Correo invalido';
-                      }
-                    }
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                    controller: password,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        labelText: 'Contraseña:'
-                    ),
-                    validator: (value)
-                    {
-                      if(!_min8(value.toString()))
-                      {
-                        return 'Contraseña invalida. Verifique que tenga minimo 8 caracteres.';
-                      }
-                    }
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                    controller: password_repeat,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        labelText: 'Repite la contraseña: '
-                    ),
-                    validator: (value)
-                    {
-                      if(value.toString() != password.text)
-                      {
-                        return 'Las contraseñas no coinciden. Vuelve a intentarlo.';
-                      }
-                    }
-                ),
-                SizedBox(height: 20),
-                MaterialButton(
-                  minWidth: 800.0,
-                  height: 80.0,
-                  onPressed: () {
-                    if(_formkey.currentState!.validate())
-                    {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginApp()));
-                    }
-                  },
-                  color: Colors.green,
-                  child: Text('Registrarse', style: TextStyle(color: Colors.white)),
-                ),
-              ],
+    return Form(
+        key: _formkey,
+        child: Column(
+          children:<Widget> [
+            Image.asset('assets/logohastalqso.png', height: 200),
+            TextFormField(
+              controller: nombres,
+              decoration: InputDecoration(hintText: 'Nombres'),
             ),
-          )
-      ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: apellidos,
+              decoration: InputDecoration(hintText: 'Apellidos'),
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: numero_celular,
+              decoration: InputDecoration(hintText: 'Número Móvil'),
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+                controller: correo,
+                decoration: InputDecoration(
+                    labelText: 'Correo: '
+                ),
+                validator: (value)
+                {
+                  if(!_esEmail(value.toString()))
+                  {
+                    return 'Correo invalido';
+                  }
+                }
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+                controller: password,
+                obscureText: true,
+                decoration: InputDecoration(
+                    labelText: 'Contraseña:'
+                ),
+                validator: (value)
+                {
+                  if(!_min8(value.toString()))
+                  {
+                    return 'Contraseña invalida. Verifique que tenga minimo 8 caracteres.';
+                  }
+                }
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+                controller: password_repeat,
+                obscureText: true,
+                decoration: InputDecoration(
+                    labelText: 'Repite la contraseña: '
+                ),
+                validator: (value)
+                {
+                  if(value.toString() != password.text)
+                  {
+                    return 'Las contraseñas no coinciden. Vuelve a intentarlo.';
+                  }
+                }
+            ),
+            SizedBox(height: 20),
+            RaisedButton(
+              color: Color.fromRGBO(255, 255, 255, 1),
+              padding: EdgeInsets.only(top: 25, bottom: 25, left: 50, right: 50),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.black, width: 3),
+              ),
+              child: Text(
+                'Registrarse',
+                style: TextStyle(
+                    color: Colors.pinkAccent,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                registro.registrar(nombres.text, apellidos.text, numero_celular.text, correo.text, password.text);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginApp()),
+                );
+              },
+            ),
+          ],
+        )
     );
   }
 }
+
+
