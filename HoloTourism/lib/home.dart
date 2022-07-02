@@ -10,6 +10,7 @@ const topColor = Color(0xFF00ac83);
 
 class MyHomePage extends StatefulWidget {
   List<File> touristicPlaces = <File>[];
+  List<String> textNames = [];
   MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -19,9 +20,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   late final List<bool> _selections;
-  callback(varImage){
+  callback(varImage, fileName){
     setState((){
       widget.touristicPlaces.add(varImage);
+      widget.textNames.add(fileName);
     });
   }
   @override
@@ -81,11 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ) : CustomList(
         selections: _selections,
         touristicPlaces: widget.touristicPlaces,
+        textNames: widget.textNames
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async{
           HomeScreenDialogs().build(context, callbackFunction:callback);
         },
+
         backgroundColor: topColor,
         tooltip: 'Upload Image',
         child: const Icon(Icons.add),

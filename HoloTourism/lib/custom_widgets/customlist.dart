@@ -5,11 +5,11 @@ import 'package:untitled1/resultado.dart';
 
 class CustomList extends StatelessWidget {
 
-  const CustomList({Key? key, required this.selections, required this.touristicPlaces}) : super(key: key);
+  const CustomList({Key? key, required this.selections, required this.touristicPlaces, required this.textNames}) : super(key: key);
 
   final List<bool> selections;
   final List<File> touristicPlaces;
-
+  final List<String> textNames;
   @override
   Widget build(BuildContext context) {
     return selections[1] ?
@@ -33,7 +33,7 @@ class CustomList extends StatelessWidget {
                     alignment: Alignment.center,
                     color: const Color(0xFFEEEDDE),
                     padding: const EdgeInsets.symmetric(vertical: 2),
-                    child: Text('A'),
+                    child: Text(textNames[index]),
                   ),
                   child: Image.file(item, fit: BoxFit.cover)
               ),
@@ -66,7 +66,7 @@ class CustomList extends StatelessWidget {
                       builder: (context) => Primera(imagen: touristicPlaces[index])
                   ));
                 },
-                title: Text('A'),
+                title: Text(textNames[index]),
               ),
             );}
       ),
