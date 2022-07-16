@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:untitled1/resultado.dart';
-import './custom_widgets/customlist.dart';
+import 'widgets/home_list.dart';
 import 'package:untitled1/screens/home_screen.dart';
 
 const topColor = Color(0xFF00ac83);

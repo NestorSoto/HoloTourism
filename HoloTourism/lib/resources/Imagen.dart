@@ -2,14 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled1/httpResponses/entities/Lugar.dart';
+import 'package:untitled1/models/lugar_model.dart';
 import 'dart:io';
-
-/*
-*
-* CLASE PARA MANEJO DE IMAGENES
-*
-* */
 
 class Imagen {
   Future<String> subir(String field, String filePath) async {
@@ -27,7 +21,7 @@ class Imagen {
     }
   }
 
-  Future<Lugar> detectar(String fileName) async {
+  Future<LugarModel> detectar(String fileName) async {
     var response = await http.post(
       Uri.parse('http://192.168.1.2:4000/api/detector/'),
       headers: <String, String>{
@@ -39,9 +33,9 @@ class Imagen {
     );
 
     if (response.statusCode == 200){
-      return Lugar.fromJson(jsonDecode(response.body));
+      return LugarModel.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to load album');
+      throw Exception('Failed to post');
     }
   }
 

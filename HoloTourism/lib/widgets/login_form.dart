@@ -3,7 +3,7 @@ import 'package:untitled1/utils/responsive.dart';
 import 'package:flutter/material.dart';
 import 'input_text.dart';
 import 'package:untitled1/home.dart';
-import '/httpResponses/Registro.dart';
+import '/resources/Registro.dart';
 
 class LoginForm extends StatefulWidget{
   @override

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:untitled1/httpResponses/Imagen.dart';
-import 'package:untitled1/httpResponses/entities/Lugar.dart';
+import 'package:untitled1/resources/Imagen.dart';
+import 'package:untitled1/models/lugar_model.dart';
 import 'package:untitled1/screens/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,7 +9,7 @@ import 'package:untitled1/home.dart';
 import 'image_view_screen.dart';
 
 class HomeScreenDialogs extends StatefulWidget {
-  late Lugar futureLugar;
+  late LugarModel futureLugar;
   final imagen = Imagen();
   File? images2;
   final imagePicker = ImagePicker();

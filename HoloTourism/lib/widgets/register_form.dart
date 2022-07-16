@@ -1,8 +1,8 @@
-import 'package:untitled1/httpResponses/Registro.dart';
+import 'package:untitled1/resources/Registro.dart';
 import 'package:untitled1/pages/login_page.dart';
 import 'package:untitled1/utils/responsive.dart';
 import 'package:flutter/material.dart';
-import '../httpResponses/Registro.dart';
+import '../resources//Registro.dart';
 import 'input_text.dart';
 import 'login_form.dart';
 
