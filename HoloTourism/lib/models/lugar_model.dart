@@ -1,26 +1,27 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-class LugarModel extends Equatable{
+class LugarModel extends Equatable {
   final bool ok;
   final String nombre;
   final String latitud;
   final String longitud;
+  String descripcion = "sin descripcion";
 
-  const LugarModel({
+  LugarModel({
     required this.ok,
     required this.nombre,
     required this.latitud,
-    required this.longitud
+    required this.longitud,
   });
 
   @override
   List<Object?> get props => [
-    ok,
-    nombre,
-    latitud,
-    longitud,
-  ];
+        ok,
+        nombre,
+        latitud,
+        longitud,
+      ];
 
   factory LugarModel.fromJson(Map<String, dynamic> json) {
     return LugarModel(
@@ -35,5 +36,9 @@ class LugarModel extends Equatable{
   String get _nombre => nombre;
   String get _latitud => latitud;
   String get _longitud => longitud;
-
+  String get _descripcion => descripcion;
+  //asignar valor a la descripcion
+  set _descripcion(String value) {
+    descripcion = value;
+  }
 }

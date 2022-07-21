@@ -2,19 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled1/httpResponses/entities/Lugar.dart';
+import 'package:untitled1/models/lugar_model.dart';
 import 'dart:io';
-
-/*
-*
-* CLASE PARA MANEJO DE IMAGENES
-*
-* */
 
 class Imagen {
   Future<String> subir(String field, String filePath) async {
-    var request = http.MultipartRequest("POST",
-        Uri.parse('https://holotourism.herokuapp.com/api/images/saveimg/'));
+    var request = http.MultipartRequest(
+        "POST", Uri.parse('http://192.168.56.1:4000/api/images/saveimg/'));
     request.fields["file"] = field;
     request.files.add(await http.MultipartFile.fromPath("file", filePath));
     request.headers.addAll({"Content-type": "multipart/form-data"});
@@ -26,9 +20,9 @@ class Imagen {
     }
   }
 
-  Future<Lugar> detectar(String fileName) async {
+  Future<LugarModel> detectar(String fileName) async {
     var response = await http.post(
-      Uri.parse('https://holotourism.herokuapp.com/api/detector/'),
+      Uri.parse('http://192.168.56.1:4000/api/detector/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -36,21 +30,31 @@ class Imagen {
         'fileName': fileName,
       }),
     );
-    getDescriptions(jsonDecode(response.body));
+    String c = await Imagen.getDescriptions(jsonDecode(response.body));
+    print("Descpcion del sistema" + c);
     if (response.statusCode == 200) {
-      return Lugar.fromJson(jsonDecode(response.body));
+      LugarModel lugar = LugarModel.fromJson(jsonDecode(response.body));
+      lugar.descripcion = c;
+      return lugar;
     } else {
-      throw Exception('Failed to load album');
+      throw Exception('Failed to post');
     }
   }
 
-  getDescriptions(Map<String, dynamic> json) async {
+  static Future<String> getDescriptions(Map<String, dynamic> json) async {
     String nombre = json['nombre'].toString();
-    var url = Uri.parse(
-        'https://holotourism.herokuapp.com/api/description/${nombre}');
+    var url = Uri.parse('http://192.168.56.1:4000/api/description/${nombre}');
     var response = await http.get(url);
-    print(json['nombre'].toString() + " nombre");
-    print('status: ${response.statusCode}');
-    print('body: ${response.body}');
+    //print(json['nombre'].toString() + " nombre");
+    //print('status: ${response.statusCode}');
+    //print('body: ${response.body}');
+    Map<String, dynamic> res = jsonDecode(response.body);
+    if (res['desc'].length <= 0) {
+      //print("no hay descripcion disponible");
+      return "no hay descripcion disponible";
+    } else {
+      //print(" desc: " + res['desc'].toString());
+      return res['desc'].toString();
+    }
   }
 }
