@@ -32,7 +32,7 @@ class HomeScreenDialogs extends StatefulWidget {
                   GestureDetector(
                     onTap: () async {
                       await _openCamera();
-                      callbackFunction(images2, fileName);
+                      callbackFunction(images2, futureLugar);
                     },
                     child: const Text('Cámara'),
                   ),
@@ -42,7 +42,7 @@ class HomeScreenDialogs extends StatefulWidget {
                   GestureDetector(
                     onTap: () async {
                       await _openGallery();
-                      callbackFunction(images2, fileName);
+                      callbackFunction(images2, futureLugar);
                     },
                     child: const Text('Galería'),
                   ),

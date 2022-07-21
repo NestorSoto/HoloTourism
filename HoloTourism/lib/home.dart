@@ -3,14 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:untitled1/resultado.dart';
+import 'models/lugar_model.dart';
 import 'widgets/home_list.dart';
 import 'package:untitled1/screens/home_screen.dart';
 
 const topColor = Color(0xFF00ac83);
 
 class MyHomePage extends StatefulWidget {
+  List<LugarModel> textNames = <LugarModel>[];
   List<File> touristicPlaces = <File>[];
-  List<String> textNames = [];
+  //List<String> textNames = [];
   List<String> textDescriptions = [];
   MyHomePage({Key? key}) : super(key: key);
 
@@ -20,10 +22,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late final List<bool> _selections;
-  callback(varImage, fileName) {
+  callback(varImage, Lugar) {
     setState(() {
       widget.touristicPlaces.add(varImage);
-      widget.textNames.add(fileName);
+      widget.textNames.add(Lugar);
     });
   }
 
