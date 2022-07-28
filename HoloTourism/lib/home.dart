@@ -3,14 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:untitled1/resultado.dart';
+import 'models/lugar_model.dart';
 import 'widgets/home_list.dart';
 import 'package:untitled1/screens/home_screen.dart';
 
 const topColor = Color(0xFF00ac83);
 
 class MyHomePage extends StatefulWidget {
+  List<LugarModel> textNames = <LugarModel>[];
   List<File> touristicPlaces = <File>[];
-  List<String> textNames = [];
+  //List<String> textNames = [];
+  List<String> textDescriptions = [];
   MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -18,14 +21,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   late final List<bool> _selections;
-  callback(varImage, fileName){
-    setState((){
+  callback(varImage, Lugar) {
+    setState(() {
       widget.touristicPlaces.add(varImage);
-      widget.textNames.add(fileName);
+      widget.textNames.add(Lugar);
     });
   }
+
   @override
   void initState() {
     _selections = [false, true];
@@ -37,7 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Image.asset("assets/logohastalqso.png", fit: BoxFit.cover, height: 60, width: 70),
+            icon: Image.asset("assets/logohastalqso.png",
+                fit: BoxFit.cover, height: 60, width: 70),
             onPressed: () {
               Navigator.pushReplacement(
                   context,
@@ -65,35 +69,34 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         backgroundColor: topColor,
       ),
-      body: widget.touristicPlaces.isEmpty ?
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            SizedBox(height: 60),
-            Text.rich(TextSpan(
-                text: "¿Aún no sube ninguna imagen?",
-                style: TextStyle(fontWeight: FontWeight.bold))),
-            Text.rich(TextSpan(
-                text: "¡Haga click en el signo '+' para iniciar!",
-                style: TextStyle(fontWeight: FontWeight.bold)))
-          ],
-        ),
-      ) : CustomList(
-        selections: _selections,
-        touristicPlaces: widget.touristicPlaces,
-        textNames: widget.textNames
-      ),
+      body: widget.touristicPlaces.isEmpty
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  SizedBox(height: 60),
+                  Text.rich(TextSpan(
+                      text: "¿Aún no sube ninguna imagen?",
+                      style: TextStyle(fontWeight: FontWeight.bold))),
+                  Text.rich(TextSpan(
+                      text: "¡Haga click en el signo '+' para iniciar!",
+                      style: TextStyle(fontWeight: FontWeight.bold)))
+                ],
+              ),
+            )
+          : CustomList(
+              selections: _selections,
+              touristicPlaces: widget.touristicPlaces,
+              textNames: widget.textNames),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async{
-          HomeScreenDialogs().build(context, callbackFunction:callback);
+        onPressed: () async {
+          HomeScreenDialogs().build(context, callbackFunction: callback);
         },
-
         backgroundColor: topColor,
         tooltip: 'Upload Image',
         child: const Icon(Icons.add),
-      ),  // This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

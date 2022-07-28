@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path/path.dart' as Path;
+import 'package:untitled1/models/lugar_model.dart';
 import 'package:untitled1/ubicacion.dart';
 import 'dart:io';
 
 class Primera extends StatelessWidget {
   File imagen;
-  String title;
+  LugarModel title;
 
   Primera({super.key, required this.imagen, required this.title});
   @override
@@ -32,20 +33,18 @@ class Primera extends StatelessWidget {
 
           //margin: EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 50),
           child: Center(
-
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(title,
+                Text(title.nombre,
                     style:
-                    TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                 Image.file(
                   imagen,
                   width: 450.0,
                 ),
-                Text(
-                    "Ruinas de una ciudad inca del siglo XV situadas en un \n promontorio  incluye diversas esculturas y terrazas"),
+                Text(title.descripcion),
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   decoration: BoxDecoration(
@@ -59,7 +58,6 @@ class Primera extends StatelessWidget {
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(1)),
                   child: Boton(context),
-
                 )
               ],
             ),
@@ -76,9 +74,8 @@ class Primera extends StatelessWidget {
         style: TextStyle(fontSize: 40),
       ),
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context) => Location()
-        ));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Location()));
       },
     );
   }

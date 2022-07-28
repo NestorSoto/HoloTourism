@@ -14,13 +14,15 @@ class HomeScreenDialogs extends StatefulWidget {
   File? images2;
   final imagePicker = ImagePicker();
   String fileName = '';
+  String fileDescription = '';
 
   HomeScreenDialogs({Key? key}) : super(key: key);
 
-  Future build(BuildContext context, {required Function(dynamic varImage, dynamic fileName) callbackFunction}) {
+  Future build(BuildContext context,
+      {required Function(dynamic varImage, dynamic fileName)
+          callbackFunction}) {
     return showDialog(
         context: context,
-
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Subir imagen'),
@@ -30,7 +32,7 @@ class HomeScreenDialogs extends StatefulWidget {
                   GestureDetector(
                     onTap: () async {
                       await _openCamera();
-                      callbackFunction(images2, fileName);
+                      callbackFunction(images2, futureLugar);
                     },
                     child: const Text('Cámara'),
                   ),
@@ -40,7 +42,7 @@ class HomeScreenDialogs extends StatefulWidget {
                   GestureDetector(
                     onTap: () async {
                       await _openGallery();
-                      callbackFunction(images2, fileName);
+                      callbackFunction(images2, futureLugar);
                     },
                     child: const Text('Galería'),
                   ),
@@ -56,10 +58,12 @@ class HomeScreenDialogs extends StatefulWidget {
       source: ImageSource.camera,
     )) as XFile;
     if (picture == null) return;
-    if(await imagen.subir(picture.path.split("/").last, picture.path)=='ok'){
+    if (await imagen.subir(picture.path.split("/").last, picture.path) ==
+        'ok') {
       debugPrint('funciono mi king');
       futureLugar = await imagen.detectar(picture.path.split("/").last);
       fileName = futureLugar.nombre;
+      fileDescription = futureLugar.descripcion;
     } else {
       debugPrint('no funciono mi king');
     }
@@ -71,11 +75,13 @@ class HomeScreenDialogs extends StatefulWidget {
       source: ImageSource.gallery,
     )) as XFile;
     if (picture == null) return;
-    if(await imagen.subir(picture.path.split("/").last, picture.path)=='ok'){
+    if (await imagen.subir(picture.path.split("/").last, picture.path) ==
+        'ok') {
       futureLugar = await imagen.detectar(picture.path.split("/").last);
       fileName = futureLugar.nombre;
+
       debugPrint('funciono mi king');
-    } else{
+    } else {
       debugPrint('no funciono mi king');
     }
     images2 = File(picture.path);
