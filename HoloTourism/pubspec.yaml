@@ -43,6 +43,8 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
   flutter_svg: ^0.20.0-nullsafety.3
+  geolocator: ^9.0.1
+  google_maps_flutter: ^2.1.10
 
 dev_dependencies:
   flutter_test:
