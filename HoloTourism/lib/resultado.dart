@@ -75,11 +75,7 @@ class Primera extends StatelessWidget {
       ),
       onPressed: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Location(
-                      lugar: title,
-                    )));
+            context, MaterialPageRoute(builder: (context) => Location()));
       },
     );
   }
